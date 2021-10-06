@@ -1,9 +1,10 @@
-package com.example.skip;
+package com.example.skip.view.activity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.skip.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
