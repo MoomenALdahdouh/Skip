@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.skip.R;
-import com.example.skip.view.activity.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -18,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getBaseContext(), LoginActivity.class));
+                startActivity(new Intent(getBaseContext(), MainActivity.class));
                 finish();
             }
         }, 1000);
