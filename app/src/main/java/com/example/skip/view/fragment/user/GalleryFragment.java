@@ -1,4 +1,4 @@
-package com.example.skip.view.fragment;
+package com.example.skip.view.fragment.user;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

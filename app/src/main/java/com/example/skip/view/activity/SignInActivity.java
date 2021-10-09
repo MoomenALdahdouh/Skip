@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.skip.R;
 import com.example.skip.model.User;
 import com.example.skip.utils.PreferenceUtils;
+import com.example.skip.view.activity.user.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -157,11 +158,13 @@ public class SignInActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         User user = documentSnapshot.toObject(User.class);
                         if (user != null) {
+                            String userType = user.getUserType();
                             if (user.isStatus()) {
                                 if (firebaseUser.isEmailVerified()) {
                                     //redirect to user profile
                                     PreferenceUtils.saveEmail(userEmail, getApplicationContext());
-                                    PreferenceUtils.savePassword(userPassword, getApplicationContext());
+                                    PreferenceUtils.saveUserType(userType, getApplicationContext());
+                                   // PreferenceUtils.savePassword(userPassword, getApplicationContext());
                                     //Check type user
                                     if (serviceId.isEmpty())
                                         checkUserTypeToSignIn(authResult.getUser().getUid());

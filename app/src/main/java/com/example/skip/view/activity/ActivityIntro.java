@@ -11,6 +11,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.skip.R;
 import com.example.skip.adapter.SplashPagerAdapter;
 import com.example.skip.model.SplashImage;
+import com.example.skip.utils.PreferenceUtils;
+import com.example.skip.view.activity.user.MainActivity;
 
 import java.util.ArrayList;
 
@@ -39,6 +41,7 @@ public class ActivityIntro extends AppCompatActivity {
     }
 
     public void skipOnClick(View view) {
+        PreferenceUtils.saveIntro(true,ActivityIntro.this);
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }

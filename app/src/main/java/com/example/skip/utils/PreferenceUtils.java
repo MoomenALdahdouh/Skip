@@ -21,6 +21,32 @@ public class PreferenceUtils {
         return preferences.getString(Constants.KEY_EMAIL, null);
     }
 
+    public static boolean saveUserType(String type, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(Constants.KEY_TYPE, type);
+        editor.apply();
+        return true;
+    }
+
+    public static String getUserType(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(Constants.KEY_TYPE, null);
+    }
+
+    public static boolean saveIntro(boolean isIntro, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(Constants.KEY_INTRO, isIntro);
+        editor.apply();
+        return true;
+    }
+
+    public static boolean isIntro(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean(Constants.KEY_INTRO, false);
+    }
+
     public static boolean savePassword(String password, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
