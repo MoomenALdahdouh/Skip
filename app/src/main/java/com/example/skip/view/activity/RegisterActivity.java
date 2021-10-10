@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String userName;
     private String userEmail;
     private String userPassword;
-    private String userType = "user";
+    private String userType = "0";
     private String dateOfCreate;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
@@ -61,9 +61,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void checkBoxTypeOnClick(View view) {
         if (checkBoxType.isChecked()) {
-            userType = "company";
+            userType = "1";
         } else {
-            userType = "user";
+            userType = "2";
         }
     }
 
@@ -109,7 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void addNewUserOnDbFirebase() {
         firebaseUser = firebaseAuth.getCurrentUser();
-        User user = new User(userName, userEmail, "", "", "", "", userType, dateOfCreate, "https://i.ibb.co/W0hVGcJ/accont.png", true, "");
+        User user = new User(userName, userEmail, "", "", "", "", userType, dateOfCreate, "https://i.ibb.co/W0hVGcJ/accont.png", "1", "");
         // save on cloudFireStore
         DocumentReference documentReference = firebaseFirestore.collection("Users")
                 .document(firebaseUser.getUid());

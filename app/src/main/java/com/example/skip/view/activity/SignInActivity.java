@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.skip.R;
 import com.example.skip.model.User;
 import com.example.skip.utils.PreferenceUtils;
+import com.example.skip.view.activity.admin.AdminActivity;
+import com.example.skip.view.activity.copmany.CompanyActivity;
 import com.example.skip.view.activity.user.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -159,12 +161,12 @@ public class SignInActivity extends AppCompatActivity {
                         User user = documentSnapshot.toObject(User.class);
                         if (user != null) {
                             String userType = user.getUserType();
-                            if (user.isStatus()) {
+                            if (user.getStatus().equals("1")) {
                                 if (firebaseUser.isEmailVerified()) {
                                     //redirect to user profile
                                     PreferenceUtils.saveEmail(userEmail, getApplicationContext());
                                     PreferenceUtils.saveUserType(userType, getApplicationContext());
-                                   // PreferenceUtils.savePassword(userPassword, getApplicationContext());
+                                    // PreferenceUtils.savePassword(userPassword, getApplicationContext());
                                     //Check type user
                                     if (serviceId.isEmpty())
                                         checkUserTypeToSignIn(authResult.getUser().getUid());
@@ -212,16 +214,23 @@ public class SignInActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String userType = documentSnapshot.getString("userType");
                 if (userType != null) {
-                    if (userType.equals("user"))
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    else if (userType.equals("company"))
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    else if (userType.equals("admin"))
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    switch (userType) {
+                        case "0"://User
+                            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                            break;
+                        case "1"://company
+                            startActivity(new Intent(SignInActivity.this, CompanyActivity.class));
+                            finish();
+                            break;
+                        case "2"://admin
+                            startActivity(new Intent(SignInActivity.this, AdminActivity.class));
+                            finish();
+                            break;
+                    }
 
                 }
-                    finish();
-                }
+                finish();
+            }
         });
     }
 

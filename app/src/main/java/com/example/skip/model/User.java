@@ -27,15 +27,15 @@ public class User implements Serializable {
     @SerializedName("userImage")
     String userImage;
     @SerializedName("status")
-    boolean status;
-    @SerializedName("aboutCompany")
-    String aboutCompany;
+    String status;
+    @SerializedName("about")
+    String about;
 
     public User() {
     }
 
     public User(String name, String email, String dateOfBirth, String address, String phone, String gender
-            , String userType, String dateCreate, String userImage, boolean status, String aboutCompany) {
+            , String userType, String dateCreate, String userImage, String status, String about) {
         this.name = name;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
@@ -46,7 +46,7 @@ public class User implements Serializable {
         this.dateCreate = dateCreate;
         this.userImage = userImage;
         this.status = status;
-        this.aboutCompany = aboutCompany;
+        this.about = about;
     }
 
     public String getName() {
@@ -121,19 +121,19 @@ public class User implements Serializable {
         this.userImage = userImage;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getAboutCompany() {
-        return aboutCompany;
+    public String getAbout() {
+        return about;
     }
 
-    public void setAboutCompany(String aboutCompany) {
-        this.aboutCompany = aboutCompany;
+    public void setAbout(String about) {
+        this.about = about;
     }
 }
