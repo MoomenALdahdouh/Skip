@@ -11,9 +11,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.skip.adapter.CategoriesAdapter;
 import com.example.skip.databinding.FragmentHomeBinding;
+import com.example.skip.model.Category;
 import com.example.skip.viewmodel.HomeViewModel;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -28,11 +34,15 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final RecyclerView recyclerView = binding.recycleViewCategories;
+        final CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getContext());
+        homeViewModel.getCategories().observe(getViewLifecycleOwner(), new Observer<ArrayList<Category>>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(ArrayList<Category> categories) {
+                categoriesAdapter.setCategoryArrayList(categories);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView.setAdapter(categoriesAdapter);
+                recyclerView.setHasFixedSize(true);
             }
         });
         return root;

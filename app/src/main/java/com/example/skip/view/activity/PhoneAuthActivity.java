@@ -15,12 +15,15 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneAuthActivity extends AppCompatActivity {
-
+    String phone = "+972599124279";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_auth);
-        String phone = "+972599124279";
+        //sendOTP();
+    }
+
+    private void sendOTP(){
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phone,
                 60,

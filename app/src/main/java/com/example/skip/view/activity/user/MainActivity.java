@@ -13,6 +13,7 @@ import com.example.skip.view.activity.admin.AdminActivity;
 import com.example.skip.view.activity.copmany.CompanyActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -41,17 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.appBarMain.toolbar);
+        //setSupportActionBar(binding.appBarMain.toolbar);
 
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+        /*binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -59,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         if (isLogin()) {
@@ -129,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 snackbar.dismiss();
             }
-        }).setActionTextColor(getResources().getColor(R.color.teal_500)).show();
+        }).setActionTextColor(getResources().getColor(R.color.purple_500)).show();
     }
 
     @Override

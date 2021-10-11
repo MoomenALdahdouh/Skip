@@ -4,16 +4,30 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.skip.model.Category;
+
+import java.util.ArrayList;
+
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<ArrayList<Category>> listMutableLiveData;
+
 
     public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        listMutableLiveData = new MutableLiveData<>();
+        ArrayList<Category> categoryArrayList = new ArrayList<Category>();
+        Category category = new Category("Clean Cars", "30 USD", "","");
+        categoryArrayList.add(category);
+        categoryArrayList.add(category);
+        categoryArrayList.add(category);
+        categoryArrayList.add(category);
+        categoryArrayList.add(category);
+        categoryArrayList.add(category);
+        categoryArrayList.add(category);
+        listMutableLiveData.setValue(categoryArrayList);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<ArrayList<Category>> getCategories() {
+        return listMutableLiveData;
     }
 }
