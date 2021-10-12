@@ -4,6 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.PhoneAuthActivity">
+    android:padding="16sp"
+    tools:context=".view.activity.auth.PhoneAuthActivity">
 
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/splash_2"
+        android:transitionName="logo_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
+        android:text="HELLO THERE, WELCOME BACK"
+        android:textSize="@dimen/_32sdp"
+        android:textColor="@color/black"
+        android:transitionName="logo_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+
+    <TextView
+        android:id="@+id/textViewJoin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/antic"
+        android:text="Join to continue"
+        android:textSize="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_skip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewJoin">
+
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonNext"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/antic"
+        android:text="Next"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainer" />
+
+    <Button
+        android:id="@+id/button_skip"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="skipOnClick"
+        android:text="Skip"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

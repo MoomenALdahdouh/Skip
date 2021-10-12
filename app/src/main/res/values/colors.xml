@@ -3,9 +3,9 @@
     <color name="purple_200">#eeeeee</color>
     <color name="purple_500">#ffc20f</color>
     <color name="purple_700">#36474f</color>
-    <color name="teal_200">#A1A1A1</color>
+    <color name="teal_200">#474747</color>
     <color name="teal_500">#FFA000</color>
-    <color name="teal_700">#474747</color>
+    <color name="teal_700">#FF000000</color>
     <!--<color name="purple_200">#A1A1A1</color>
     <color name="purple_500">#292929</color>
     <color name="purple_700">#474747</color>

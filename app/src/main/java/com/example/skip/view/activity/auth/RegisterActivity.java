@@ -1,4 +1,4 @@
-package com.example.skip.view.activity;
+package com.example.skip.view.activity.auth;
 
 import android.content.Intent;
 import android.os.Bundle;

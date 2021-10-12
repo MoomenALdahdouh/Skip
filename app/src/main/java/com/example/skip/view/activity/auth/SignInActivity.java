@@ -1,4 +1,4 @@
-package com.example.skip.view.activity;
+package com.example.skip.view.activity.auth;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.skip.R;
 import com.example.skip.model.User;
 import com.example.skip.utils.PreferenceUtils;
+import com.example.skip.view.activity.UserBlocked;
 import com.example.skip.view.activity.admin.AdminActivity;
 import com.example.skip.view.activity.copmany.CompanyActivity;
 import com.example.skip.view.activity.user.MainActivity;

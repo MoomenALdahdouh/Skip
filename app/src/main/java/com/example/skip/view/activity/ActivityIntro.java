@@ -3,6 +3,7 @@ package com.example.skip.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -24,6 +25,7 @@ public class ActivityIntro extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_intro);
         SplashImage item1 = new SplashImage("Create", "Upload original clips to our Network, and you can be a star and earn cash & gifts!", R.drawable.intro1_2);
         SplashImage item2 = new SplashImage("Enjoy", "Watch clips, Like, Comment, Chat, and Follow other users", R.drawable.intro2_3);

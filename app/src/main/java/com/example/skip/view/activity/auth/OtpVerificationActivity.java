@@ -1,4 +1,4 @@
-package com.example.skip.view.activity;
+package com.example.skip.view.activity.auth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.example.skip.R;
 import com.example.skip.utils.PreferenceUtils;
-import com.example.skip.view.activity.SignInActivity;
+import com.example.skip.view.activity.auth.SignInActivity;
 import com.example.skip.view.activity.admin.AdminActivity;
 import com.example.skip.view.activity.copmany.CompanyActivity;
 import com.google.android.gms.tasks.OnFailureListener;
