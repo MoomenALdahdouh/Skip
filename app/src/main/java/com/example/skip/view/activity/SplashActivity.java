@@ -33,42 +33,40 @@ public class SplashActivity extends AppCompatActivity {
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_anim);
-        bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_anim);
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_anim);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_anim);
         binding.imageViewSplash.setAnimation(topAnim);
         binding.linearLayout4.setAnimation(bottomAnim);
 
         //
         Pair[] pairs = new Pair[2];
-        pairs[0]=new Pair<View,String>(binding.imageViewSplash,"logo_image");
-        pairs[1]=new Pair<View,String>(binding.linearLayout4,"logo_text");
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this,pairs);
+        pairs[0] = new Pair<View, String>(binding.imageViewSplash, "logo_image");
+        pairs[1] = new Pair<View, String>(binding.linearLayout4, "logo_text");
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this, pairs);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (PreferenceUtils.isIntro(SplashActivity.this)) {
-                    if (PreferenceUtils.getEmail(SplashActivity.this) != null && !PreferenceUtils.getEmail(getApplicationContext()).isEmpty()) {
-                        switch (PreferenceUtils.getUserType(SplashActivity.this)) {
-                            case "0"://user
-                                startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                                break;
-                            case "1"://company
-                                startActivity(new Intent(SplashActivity.this, CompanyActivity.class));
-                                break;
-                            case "2"://admin
-                                startActivity(new Intent(SplashActivity.this, AdminActivity.class));
-                                break;
-                        }
-                        finish();
-                    } else {
-                        startActivity(new Intent(SplashActivity.this, PhoneAuthActivity.class),options.toBundle());
-                        finish();
+                if (PreferenceUtils.getUserType(SplashActivity.this) != null && !PreferenceUtils.getUserType(getApplicationContext()).isEmpty()) {
+                    switch (PreferenceUtils.getUserType(SplashActivity.this)) {
+                        case "0"://user
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            break;
+                        case "1"://company
+                            startActivity(new Intent(SplashActivity.this, CompanyActivity.class));
+                            break;
+                        case "2"://admin
+                            startActivity(new Intent(SplashActivity.this, AdminActivity.class));
+                            break;
                     }
                 } else {
-                    startActivity(new Intent(SplashActivity.this, PhoneAuthActivity.class),options.toBundle());
-                    finish();
+                    if (PreferenceUtils.isIntro(SplashActivity.this)) {
+                        startActivity(new Intent(SplashActivity.this, PhoneAuthActivity.class), options.toBundle());
+                    } else {
+                        startActivity(new Intent(SplashActivity.this, ActivityIntro.class), options.toBundle());
+                    }
                 }
+                finish();
 
             }
         }, 3500);

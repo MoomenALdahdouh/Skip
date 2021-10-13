@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skip" >
         <activity
-            android:name=".view.activity.auth.PhoneSignInActivity"
-            android:exported="true" />
-        <activity
             android:name=".view.activity.auth.OtpVerificationActivity"
             android:exported="true" />
         <activity

@@ -35,17 +35,14 @@ public class PhoneAuthActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         fragment = new InputPhoneFragment();
-        setFragment(fragment, "null");
-        nextButtonOnClick();
+        setFragment(fragment);
+        //nextButtonOnClick();
         //sendOTP();
     }
 
-    private void setFragment(Fragment fragment, String tag) {
+    private void setFragment(Fragment fragment) {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        if (tag.equals("null"))
-            fragmentTransaction.replace(R.id.fragmentContainer, fragment,"inputPhone").addToBackStack(null).commit();
-        else
-            fragmentTransaction.replace(R.id.fragmentContainer, fragment).addToBackStack(tag).commit();
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment).commit();
     }
 
     private void nextButtonOnClick() {
@@ -54,7 +51,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(PhoneAuthActivity.this, "Click", Toast.LENGTH_SHORT).show();
                 fragment = new OtpVerificationFragment();
-                setFragment(fragment, "inputPhone");
+                setFragment(fragment);
                 binding.buttonNext.setText("GO");
                 binding.textViewJoin.setText("Enter ");
             }

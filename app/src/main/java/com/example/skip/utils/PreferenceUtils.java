@@ -8,6 +8,19 @@ public class PreferenceUtils {
     public PreferenceUtils() {
     }
 
+    public static boolean savePhone(String phone, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(Constants.KEY_PHONE, phone);
+        editor.apply();
+        return true;
+    }
+
+    public static String getPhone(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(Constants.KEY_PHONE, null);
+    }
+
     public static boolean saveEmail(String email, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();

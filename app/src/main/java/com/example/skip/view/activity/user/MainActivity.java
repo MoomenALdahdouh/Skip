@@ -1,7 +1,11 @@
 package com.example.skip.view.activity.user;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
@@ -11,13 +15,20 @@ import com.example.skip.utils.PreferenceUtils;
 import com.example.skip.view.activity.auth.SignInActivity;
 import com.example.skip.view.activity.admin.AdminActivity;
 import com.example.skip.view.activity.copmany.CompanyActivity;
+import com.example.skip.view.fragment.user.HomeFragment;
+import com.example.skip.view.fragment.user.SlideshowFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -35,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private FirebaseFirestore firebaseFirestore;
+    private Fragment fragment;
+    private FragmentTransaction fragmentTransaction;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,34 +56,37 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //setSupportActionBar(binding.appBarMain.toolbar);
 
-        /*binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-        DrawerLayout drawer = binding.drawerLayout;
+        drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        //NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        MenuItem showMoreItem = bottomNavigationView.getMenu().findItem(R.id.nav_show_more);
+        showMoreItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (!drawer.isDrawerOpen(GravityCompat.START))
+                    drawer.openDrawer(Gravity.START);
+                else drawer.closeDrawer(Gravity.END);
+                return true;
+            }
+        });
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         if (isLogin()) {
             //TODO: MAKE SOMETHING
         } else
             showSnackBar();
+
+        //bottomNavigation();
     }
 
     @Override
@@ -77,6 +94,38 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @SuppressLint({"WrongConstant", "NonConstantResourceId"})
+    private void bottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        fragment = new HomeFragment();
+                        break;
+
+                    case R.id.nav_slideshow:
+                        fragment = new SlideshowFragment();
+                        break;
+
+                    case R.id.nav_gallery:
+                        if (!drawer.isDrawerOpen(GravityCompat.START))
+                            drawer.openDrawer(Gravity.START);
+                        else drawer.closeDrawer(Gravity.END);
+                        break;
+                }
+                setFragment(fragment);
+                return true;
+            }
+        });
+    }
+
+    private void setFragment(Fragment fragment) {
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment_content_main, fragment).commit();
     }
 
     @Override
@@ -87,17 +136,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean isLogin() {
-        return PreferenceUtils.getEmail(getApplicationContext()) != null && !PreferenceUtils.getEmail(getApplicationContext()).isEmpty();
+        return PreferenceUtils.getUserType(getApplicationContext()) != null && !PreferenceUtils.getUserType(getApplicationContext()).isEmpty();
     }
 
     private void checkUserTypeToSignIn() {
-        if (PreferenceUtils.getEmail(getApplicationContext()) != null && !PreferenceUtils.getEmail(getApplicationContext()).isEmpty()) {
+        if (PreferenceUtils.getUserType(getApplicationContext()) != null && !PreferenceUtils.getUserType(getApplicationContext()).isEmpty()) {
             String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
             firebaseFirestore.collection("Users").document(userID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     String userType = documentSnapshot.getString("userType");
-                    if (userType != null || !userType.isEmpty()) {
+                    if (userType != null) {
                         switch (userType) {
                             case "0"://User
                                 //startActivity(new Intent(MainActivity.this, MainActivity.class));

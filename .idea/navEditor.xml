@@ -124,13 +124,25 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="nav_show_more">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="276" />
+                            <option name="y" value="311" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="nav_slideshow">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="368" />
+                            <option name="x" value="8" />
+                            <option name="y" value="304" />
                           </Point>
                         </option>
                       </LayoutPositions>

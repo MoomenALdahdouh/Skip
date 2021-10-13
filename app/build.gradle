@@ -76,4 +76,7 @@ dependencies {
     //implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     //sdp Image for all device
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    //
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation "android.arch.lifecycle:viewmodel:1.1.1"
 }
