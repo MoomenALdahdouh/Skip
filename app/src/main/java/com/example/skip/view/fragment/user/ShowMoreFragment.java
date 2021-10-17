@@ -15,16 +15,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.skip.databinding.FragmentGalleryBinding;
 import com.example.skip.databinding.FragmentShowMoreBinding;
 import com.example.skip.viewmodel.GalleryViewModel;
+import com.example.skip.viewmodel.ShowMoreViewModel;
 
 public class ShowMoreFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private ShowMoreViewModel galleryViewModel;
     private FragmentShowMoreBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+                new ViewModelProvider(this).get(ShowMoreViewModel.class);
 
         binding = FragmentShowMoreBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

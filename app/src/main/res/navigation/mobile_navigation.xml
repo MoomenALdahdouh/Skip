@@ -23,9 +23,47 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
-    <!--<fragment
+    <fragment
         android:id="@+id/nav_show_more"
         android:name="com.example.skip.view.fragment.user.ShowMoreFragment"
         android:label="@string/menu_show_more"
-        tools:layout="@layout/fragment_show_more" />-->
+        tools:layout="@layout/fragment_show_more" />
+
+    <fragment
+        android:id="@+id/nav_orders"
+        android:name="com.example.skip.view.fragment.user.OrdersFragment"
+        android:label="@string/menu_orders"
+        tools:layout="@layout/fragment_orders" />
+
+    <fragment
+        android:id="@+id/nav_help"
+        android:name="com.example.skip.view.fragment.user.HelpFragment"
+        android:label="@string/menu_help"
+        tools:layout="@layout/fragment_help" />
+
+    <fragment
+        android:id="@+id/nav_wallet"
+        android:name="com.example.skip.view.fragment.user.MyWalletFragment"
+        android:label="@string/menu_wallet"
+        tools:layout="@layout/fragment_my_wallet" />
+    <fragment
+        android:id="@+id/nav_account_settings"
+        android:name="com.example.skip.view.fragment.user.AccountSettingsFragment"
+        android:label="@string/menu_account_settings"
+        tools:layout="@layout/fragment_account_settings" />
+    <fragment
+        android:id="@+id/nav_register_as_provider"
+        android:name="com.example.skip.view.fragment.user.RegisterAsProviderFragment"
+        android:label="@string/menu_register_as_service_provider"
+        tools:layout="@layout/fragment_register_as_provider" />
+    <fragment
+        android:id="@+id/nav_faqs"
+        android:name="com.example.skip.view.fragment.user.FAQSFragment"
+        android:label="@string/menu_faqs"
+        tools:layout="@layout/fragment_f_a_q_s" />
+    <fragment
+        android:id="@+id/nav_about_us"
+        android:name="com.example.skip.view.fragment.user.AboutUsFragment"
+        android:label="@string/menu_about_us"
+        tools:layout="@layout/fragment_about_us" />
 </navigation>
