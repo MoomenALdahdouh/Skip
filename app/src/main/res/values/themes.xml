@@ -41,4 +41,5 @@
     <style name="Theme.Skip.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Skip.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
