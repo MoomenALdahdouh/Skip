@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.skip" >
+    package="com.example.skip">
 
     <application
         android:allowBackup="true"
@@ -8,15 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Skip" >
+        android:theme="@style/Theme.Skip">
         <activity
             android:name=".view.activity.auth.OtpVerificationActivity"
             android:exported="true" />
         <activity
             android:name=".view.activity.auth.PhoneAuthActivity"
             android:exported="true"
-            android:theme="@style/Theme.Skip.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.Skip.NoActionBar"></activity>
         <activity
             android:name=".view.activity.admin.AdminActivity"
             android:exported="true"
@@ -31,7 +30,7 @@
             android:name=".view.activity.user.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Skip.NoActionBar" >
+            android:theme="@style/Theme.Skip.NoActionBar">
 
         </activity>
         <activity
@@ -53,7 +52,7 @@
         <activity
             android:name=".view.activity.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.NoActionBar" >
+            android:theme="@style/Theme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

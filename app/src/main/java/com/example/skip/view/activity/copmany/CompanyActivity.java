@@ -10,17 +10,26 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.skip.R;
+import com.example.skip.adapter.FragmentPageAdapter;
 import com.example.skip.databinding.ActivityCompanyBinding;
 import com.example.skip.databinding.ActivityMainBinding;
+import com.example.skip.view.activity.admin.AdminActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class CompanyActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityCompanyBinding binding;
+    private FragmentPageAdapter fragmentPageAdapter;
+    private ViewPager2 viewPager;
+    private TabLayout tabLayout;
+    private String[] titles = new String[]{"Home", "Services", "Activity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +37,12 @@ public class CompanyActivity extends AppCompatActivity {
 
         binding = ActivityCompanyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.appBarCompany.toolbar);
+        viewPager = findViewById(R.id.view_pager_id);
+        tabLayout = findViewById(R.id.tabLayout);
+        fragmentPageAdapter = new FragmentPageAdapter(CompanyActivity.this, titles);
+        viewPager.setAdapter(fragmentPageAdapter);
+        new TabLayoutMediator(tabLayout, viewPager, ((tab, position) -> tab.setText(titles[position]))).attach();
+       /* setSupportActionBar(binding.appBarCompany.toolbar);
         binding.appBarCompany.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +60,7 @@ public class CompanyActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_company);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        NavigationUI.setupWithNavController(navigationView, navController);*/
     }
 
     @Override
