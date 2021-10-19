@@ -1,4 +1,4 @@
-package com.example.skip.view.fragment.comapny;
+package com.example.skip.view.fragment.admin;
 
 import android.os.Bundle;
 
@@ -9,19 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.skip.R;
+import com.example.skip.databinding.FragmentHelpBinding;
+import com.example.skip.databinding.FragmentHomeAdminBinding;
+import com.example.skip.databinding.FragmentHomeBinding;
 
-public class HomeFragment extends Fragment {
+public class HomeAdminFragment extends Fragment {
 
+    private FragmentHomeAdminBinding binding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home3, container, false);
+        binding = FragmentHomeAdminBinding.inflate(inflater,container,false);
+        return binding.getRoot();
     }
+
 }

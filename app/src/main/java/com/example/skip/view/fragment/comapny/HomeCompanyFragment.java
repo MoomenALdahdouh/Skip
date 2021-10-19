@@ -1,4 +1,4 @@
-package com.example.skip.view.fragment.admin;
+package com.example.skip.view.fragment.comapny;
 
 import android.os.Bundle;
 
@@ -9,11 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.skip.R;
-import com.example.skip.databinding.FragmentCategoriesBinding;
 
-public class CategoriesFragment extends Fragment {
-
-    private FragmentCategoriesBinding binding;
+public class HomeCompanyFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +21,7 @@ public class CategoriesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentCategoriesBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home_company, container, false);
     }
 }

@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,6 +18,14 @@ import com.example.skip.adapter.FragmentPageAdapter;
 import com.example.skip.databinding.ActivityCompanyBinding;
 import com.example.skip.databinding.ActivityMainBinding;
 import com.example.skip.view.activity.admin.AdminActivity;
+import com.example.skip.view.fragment.admin.AdsFragment;
+import com.example.skip.view.fragment.admin.CategoriesFragment;
+import com.example.skip.view.fragment.admin.EmployiesFragment;
+import com.example.skip.view.fragment.admin.HomeAdminFragment;
+import com.example.skip.view.fragment.admin.ServiceFragment;
+import com.example.skip.view.fragment.admin.UsersFragment;
+import com.example.skip.view.fragment.comapny.ActivityFragment;
+import com.example.skip.view.fragment.comapny.HomeCompanyFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -30,6 +39,7 @@ public class CompanyActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
     private String[] titles = new String[]{"Home", "Services", "Activity"};
+    private Fragment[] fragments = new Fragment[]{new HomeCompanyFragment(), new ServiceFragment(), new ActivityFragment()};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +49,7 @@ public class CompanyActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         viewPager = findViewById(R.id.view_pager_id);
         tabLayout = findViewById(R.id.tabLayout);
-        fragmentPageAdapter = new FragmentPageAdapter(CompanyActivity.this, titles);
+        fragmentPageAdapter = new FragmentPageAdapter(CompanyActivity.this, titles, fragments);
         viewPager.setAdapter(fragmentPageAdapter);
         new TabLayoutMediator(tabLayout, viewPager, ((tab, position) -> tab.setText(titles[position]))).attach();
        /* setSupportActionBar(binding.appBarCompany.toolbar);
