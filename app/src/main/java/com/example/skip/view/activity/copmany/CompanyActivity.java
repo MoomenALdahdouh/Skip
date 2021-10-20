@@ -44,7 +44,6 @@ public class CompanyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityCompanyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         viewPager = findViewById(R.id.view_pager_id);

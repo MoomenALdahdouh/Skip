@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.admin.AdminActivity">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="0dp"
@@ -18,13 +17,10 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:menu="@menu/main"
+            android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/Theme.Skip.PopupOverlay"
             app:subtitle="Moomen Aldahdouh"
-            app:title="Console">
-
-        </androidx.appcompat.widget.Toolbar>
+            app:title="Console"/>
     </androidx.cardview.widget.CardView>
 
 

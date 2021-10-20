@@ -1,9 +1,13 @@
 package com.example.skip.view.activity.admin;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -43,11 +47,42 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setSupportActionBar(findViewById(R.id.toolbar));
         viewPager = findViewById(R.id.view_pager_id);
         tabLayout = findViewById(R.id.tabLayout);
         fragmentPageAdapter = new FragmentPageAdapter(AdminActivity.this, titles, fragments);
         viewPager.setAdapter(fragmentPageAdapter);
         new TabLayoutMediator(tabLayout, viewPager, ((tab, position) -> tab.setText(titles[position]))).attach();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.admin, menu);
+        return true;
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = null;
+        switch (item.getItemId()) {
+            case R.id.action_category:
+                intent = new Intent(AdminActivity.this, CreateCategoryActivity.class);
+                break;
+            case R.id.action_service:
+                intent = new Intent(AdminActivity.this, CreateServiceActivity.class);
+                break;
+            case R.id.action_provider:
+                intent = new Intent(AdminActivity.this, CreateProviderActivity.class);
+                break;
+            case R.id.action_admin:
+                intent = new Intent(AdminActivity.this, CreateAdminActivity.class);
+                break;
+            case R.id.action_ads:
+                intent = new Intent(AdminActivity.this, CreateAdsActivity.class);
+                break;
+        }
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 }

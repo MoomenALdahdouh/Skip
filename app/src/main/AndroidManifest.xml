@@ -10,17 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skip">
         <activity
+            android:name=".view.activity.admin.CreateAdsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.activity.admin.CreateAdminActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.activity.admin.CreateProviderActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.activity.admin.CreateServiceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.activity.admin.CreateCategoryActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.activity.auth.OtpVerificationActivity"
             android:exported="true" />
         <activity
             android:name=".view.activity.auth.PhoneAuthActivity"
             android:exported="true"
-            android:theme="@style/Theme.Skip.NoActionBar"/>
+            android:theme="@style/Theme.Skip.NoActionBar" />
         <activity
             android:name=".view.activity.admin.AdminActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Skip.NoActionBar" >
+            android:theme="@style/Theme.Skip">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,9 +51,7 @@
             android:name=".view.activity.user.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Skip.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Skip.NoActionBar" />
         <activity
             android:name=".view.activity.ActivityIntro"
             android:exported="true"
@@ -59,11 +72,14 @@
             android:name=".view.activity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.NoActionBar">
-           <!-- <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
 
         <meta-data

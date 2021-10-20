@@ -7,6 +7,12 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="action_category">Create new Category</string>
+    <string name="action_service">Create new Service</string>
+    <string name="action_provider">Create new Provider</string>
+    <string name="action_admin">Create new Admin</string>
+    <string name="action_ads">Create new Ads</string>
+
     <string name="menu_home">Home</string>
     <string name="menu_orders">Orders</string>
     <string name="menu_help">Help</string>
