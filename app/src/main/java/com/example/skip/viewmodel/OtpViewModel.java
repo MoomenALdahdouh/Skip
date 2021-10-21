@@ -14,7 +14,7 @@ public class OtpViewModel extends ViewModel {
     private Repository repository;
     private MutableLiveData<FirebaseUser> mutableLiveData;
 
-    public OtpViewModel(){
+    public OtpViewModel() {
         repository = new Repository();
         mutableLiveData = new MutableLiveData<>();
     }

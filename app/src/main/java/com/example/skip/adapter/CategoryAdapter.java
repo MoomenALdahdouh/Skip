@@ -30,9 +30,12 @@ public class CategoryAdapter  extends FirestoreRecyclerAdapter<Category, Categor
     @SuppressLint("SetTextI18n")
     @Override
     protected void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position, @NonNull Category model) {
-        /*Picasso.get()
+        Picasso.get()
                 .load(model.getImage())
-                .into(holder.categoryBackground);*/
+                .into(holder.categoryImage);
+        Picasso.get()
+                .load(model.getBackground())
+                .into(holder.categoryBackground);
         holder.categoryTitle.setText(model.getTitle());
         holder.categoryDateSubTitle.setText(model.getSubTitle());
     }
@@ -47,13 +50,14 @@ public class CategoryAdapter  extends FirestoreRecyclerAdapter<Category, Categor
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView categoryBackground;
+        ImageView categoryImage,categoryBackground;
         TextView categoryTitle;
         TextView categoryDateSubTitle;
         ConstraintLayout constraintLayoutCategoryItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            categoryImage = itemView.findViewById(R.id.categoryItemImage);
             categoryBackground = itemView.findViewById(R.id.categoryItemBackground);
             categoryTitle = itemView.findViewById(R.id.categoryItemTitle);
             categoryDateSubTitle = itemView.findViewById(R.id.categoryItemSubTitle);
