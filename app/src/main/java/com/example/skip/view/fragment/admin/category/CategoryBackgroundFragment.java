@@ -2,6 +2,8 @@ package com.example.skip.view.fragment.admin.category;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -27,6 +29,8 @@ import com.example.skip.R;
 import com.example.skip.databinding.FragmentCategoryBackgroundBinding;
 import com.example.skip.databinding.FragmentCategoryImageBinding;
 import com.example.skip.model.Category;
+import com.example.skip.view.activity.DoneCreateActivity;
+import com.example.skip.view.activity.admin.AdminActivity;
 import com.example.skip.view.activity.admin.CreateCategoryActivity;
 import com.example.skip.viewmodel.CategoryViewModel;
 import com.google.android.gms.tasks.Continuation;
@@ -73,7 +77,15 @@ public class CategoryBackgroundFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         selectImage();
+        initialState();
         nextButton();
+    }
+
+    private void initialState() {
+        binding.progressBar.setVisibility(View.GONE);
+        binding.imageViewDone.setVisibility(View.GONE);
+        binding.buttonEditImage.setVisibility(View.GONE);
+        binding.buttonNext.setEnabled(false);
     }
 
     private void selectImage() {
@@ -90,28 +102,24 @@ public class CategoryBackgroundFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO: Show Dialog with green true image successfully create
-
+                startActivity(new Intent(getContext(), DoneCreateActivity.class));
+                getActivity().finish();
             }
         });
     }
 
     private void saveCategoryBackground(String background) {
-        //String background = "https://i.ibb.co/smbnYHG/2021-10-21-10-54-43.png";
         ((CreateCategoryActivity) getActivity()).setCategoryBackground(background);
         myCategory = CategoryViewModel.getCategory();
         myCategory.setBackground(background);
         CategoryViewModel.setCategory(myCategory);
         CategoryViewModel categoryViewModel = new CategoryViewModel();
         categoryViewModel.addCategoryToFirebase(myCategory);
-        /*CategoryViewModel categoryViewModel = new ViewModelProvider(CategoryBackgroundFragment.this).get(CategoryViewModel.class);
-        categoryViewModel.getCategoryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Category>() {
-            @Override
-            public void onChanged(Category category) {
-                myCategory = category;
-                myCategory.setImage(background);
-                categoryViewModel.setCategory(myCategory);
-            }
-        });*/
+        binding.progressBar.setVisibility(View.GONE);
+        binding.buttonNext.setEnabled(true);
+        binding.imageViewDone.setVisibility(View.VISIBLE);
+        binding.buttonEditImage.setVisibility(View.VISIBLE);
+        binding.imageViewSelect.setVisibility(View.GONE);
     }
 
     private void cropImage() {
@@ -154,7 +162,7 @@ public class CategoryBackgroundFragment extends Fragment {
 
     private void postBackgroundOnFireBase() {
         if (imageUri != null) {
-            //progressBarBottomSheet.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.VISIBLE);
             compressAndNameImage();
             ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();
             compressor.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayInputStream);

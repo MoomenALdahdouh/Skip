@@ -73,12 +73,26 @@ public class CategoryImageFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initialState();
         selectImage();
         nextButton();
     }
 
+    private void initialState() {
+        binding.progressBar.setVisibility(View.GONE);
+        binding.imageViewDone.setVisibility(View.GONE);
+        binding.buttonEditImage.setVisibility(View.GONE);
+        binding.buttonNext.setEnabled(false);
+    }
+
     private void selectImage() {
         binding.imageViewSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cropImage();
+            }
+        });
+        binding.buttonEditImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cropImage();
@@ -93,13 +107,14 @@ public class CategoryImageFragment extends Fragment {
                 Fragment fragment = new CategoryBackgroundFragment();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, fragment).addToBackStack(null).commit();
+                ((CreateCategoryActivity) getActivity()).setStep("3");
             }
         });
     }
 
     private void postImageOnFireBase() {
         if (imageUri != null) {
-            //progressBarBottomSheet.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.VISIBLE);
             compressAndNameImage();
             ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();
             compressor.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayInputStream);
@@ -146,17 +161,11 @@ public class CategoryImageFragment extends Fragment {
         myCategory = CategoryViewModel.getCategory();
         myCategory.setImage(image);
         CategoryViewModel.setCategory(myCategory);
-
-
-        /*CategoryViewModel categoryViewModel = new ViewModelProvider(CategoryImageFragment.this).get(CategoryViewModel.class);
-        categoryViewModel.getCategoryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Category>() {
-            @Override
-            public void onChanged(Category category) {
-                myCategory = category;
-                myCategory.setImage(image);
-                categoryViewModel.setCategory(myCategory);
-            }
-        });*/
+        binding.progressBar.setVisibility(View.GONE);
+        binding.buttonNext.setEnabled(true);
+        binding.imageViewDone.setVisibility(View.VISIBLE);
+        binding.buttonEditImage.setVisibility(View.VISIBLE);
+        binding.imageViewSelect.setVisibility(View.GONE);
     }
 
     private void cropImage() {

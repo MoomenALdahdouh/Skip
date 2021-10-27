@@ -16,13 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skip">
         <activity
+            android:name=".view.activity.DoneCreateActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NoActionBar"/>
+        <activity
             android:name=".view.activity.admin.CreateAdsActivity"
             android:exported="true" />
         <activity
             android:name=".view.activity.admin.CreateAdminActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".view.activity.admin.CreateProviderActivity"
             android:exported="true" />
@@ -60,11 +62,14 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Skip.NoActionBar">
-           <!-- <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".view.activity.ActivityIntro"
@@ -87,11 +92,13 @@
             android:exported="true"
             android:theme="@style/Theme.NoActionBar">
 
-            <!--<intent-filter>
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
 
         <meta-data

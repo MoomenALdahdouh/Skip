@@ -112,7 +112,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/textViewStep"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_circle_button_black"
@@ -134,7 +134,7 @@
                 android:textColor="@color/teal_700"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView24"
+                app:layout_constraintStart_toEndOf="@+id/textViewStep"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View

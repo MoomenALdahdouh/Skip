@@ -1,6 +1,8 @@
 package com.example.skip.view.activity.admin;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -84,5 +86,19 @@ public class AdminActivity extends AppCompatActivity {
         }
         startActivity(intent);
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createCategorySuccessfully() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(AdminActivity.this);
+        dialogBuilder.setTitle("Create Category")
+                .setMessage("Successfully Create Category")
+                .setIcon(R.drawable.ic_baseline_done_24)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
     }
 }

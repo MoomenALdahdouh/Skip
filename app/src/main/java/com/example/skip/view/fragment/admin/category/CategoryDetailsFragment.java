@@ -11,6 +11,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +35,8 @@ public class CategoryDetailsFragment extends Fragment {
 
     private FragmentCategoryDetailsBinding binding;
     private Category myCategory;
+    private String title = "";
+    private String describtion = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,9 @@ public class CategoryDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.editTextCategoryTitle.addTextChangedListener(textWatcher);
+        binding.editTextCategoryDescription.addTextChangedListener(textWatcher);
+        binding.buttonNext.setEnabled(checkInputDetails());
         nextButton();
     }
 
@@ -60,27 +67,41 @@ public class CategoryDetailsFragment extends Fragment {
                 Fragment fragment = new CategoryImageFragment();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, fragment).addToBackStack(null).commit();
+                ((CreateCategoryActivity) getActivity()).setStep("2");
             }
         });
     }
 
     private void saveCategoryDetail() {
-        String title = binding.editTextCategoryTitle.getText().toString();
-        String describtion = binding.editTextCategoryDescription.getText().toString();
         String createBy = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String dateOfCreate = DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
         myCategory = new Category(title, describtion, "", "", "", "1", dateOfCreate, createBy, "", "");
         CategoryViewModel.setCategory(myCategory);
         ((CreateCategoryActivity) getActivity()).setCategoryTitle(title, describtion);
-
-        /*CategoryViewModel categoryViewModel = new ViewModelProvider(CategoryDetailsFragment.this).get(CategoryViewModel.class);
-        CategoryViewModel categoryViewModel = new CategoryViewModel();
-        /*categoryViewModel.getCategoryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Category>() {
-            @Override
-            public void onChanged(Category category) {
-
-            }
-        });*/
+        binding.buttonNext.setEnabled(false);
     }
+
+    private boolean checkInputDetails() {
+        title = binding.editTextCategoryTitle.getText().toString().trim();
+        describtion = binding.editTextCategoryDescription.getText().toString().trim();
+        return !title.isEmpty() && !describtion.isEmpty();
+    }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            binding.buttonNext.setEnabled(checkInputDetails());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
 }
