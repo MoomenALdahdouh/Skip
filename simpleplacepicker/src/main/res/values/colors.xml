@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#228BB3</color>
+    <color name="colorPrimaryDark">#228BB3</color>
+    <color name="colorAccent">#228BB3</color>
+
+    <color name="purple_200">#eeeeee</color>
+    <color name="purple_500">#ffc20f</color>
+    <color name="purple_700">#36474f</color>
+    <color name="teal_200">#474747</color>
+    <color name="teal_500">#FFA000</color>
+    <color name="teal_700">#FF000000</color>
+    <!--<color name="purple_200">#A1A1A1</color>
+    <color name="purple_500">#292929</color>
+    <color name="purple_700">#474747</color>
+    <color name="teal_200">#A1A1A1</color>
+    <color name="teal_500">#FFA000</color>
+    <color name="teal_700">#474747</color>-->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="light_gray">#ECECEC</color>
+    <color name="light_gray2">#787878</color>
+    <color name="gray">#2E2E2E</color>
+    <color name="gray2">#4C4C4C</color>
+    <color name="gone">#002E2E2E</color>
+    <color name="blue1">#2F74C8</color>
+    <color name="inactive_dots">#03070b</color>
+    <color name="transport">#00000000</color>
+    <color name="transport_2">#4B606060</color>
+    <color name="bink">#BA68C8</color>
+    <color name="blue">#2546E8</color>
+    <color name="green">#00AC7B</color>
+    <color name="light_green">#DF7CFBC0</color>
+    <color name="green2">#00AC53</color>
+    <color name="yellow">#FFFB00</color>
+    <color name="bink2">#6200FF</color>
+    <color name="bink3">#E81D35</color>
+    <color name="tree">#A53A00</color>
+</resources>

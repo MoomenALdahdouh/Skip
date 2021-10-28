@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -15,16 +18,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skip">
+
+        <!--Location-->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/places_api_key" />
+
         <activity
             android:name=".view.activity.DoneCreateActivity"
             android:exported="true"
-            android:theme="@style/Theme.NoActionBar"/>
+            android:theme="@style/Theme.NoActionBar" />
         <activity
             android:name=".view.activity.admin.CreateAdsActivity"
             android:exported="true" />
         <activity
             android:name=".view.activity.admin.CreateAdminActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity
             android:name=".view.activity.admin.CreateProviderActivity"
             android:exported="true" />
@@ -46,11 +56,11 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Skip">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".view.activity.copmany.CompanyActivity"
@@ -62,14 +72,11 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Skip.NoActionBar">
-
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
         </activity>
         <activity
             android:name=".view.activity.ActivityIntro"

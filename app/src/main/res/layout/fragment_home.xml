@@ -116,6 +116,7 @@
                     app:srcCompat="@drawable/splash_2" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayoutLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_button_1"

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SimplePlacePicker</string>
+
+    <string name="service_not_available">تأكد من اتصال الهاتف بالانترنت</string>
+    <string name="no_address_found">لم يتم العثور على أي عنوان </string>
+    <string name="address_found">تم العثور على عنوان </string>
+    <string name="not_support_area">هذه المنطقة غير مدعومة حاليا </string>
+    <string name="confirm_location">تأكيد العنوان</string>
+    <string name="search_place">ابحث عن عنوان </string>
+    <string name="confirm_pickup">تأكيد نقطة الانطلاق</string>
+    <string name="confirm_dest">تأكيد نقطة الوصول</string>
+    <string name="failed_select_location">خطأفي تحديد الموقع ، من فضلك حاول مرة أخرى</string>
+
+    <string name="places_api_key" translatable="false">AIzaSyA43MJKhE6bs_71GviN0xQgEDp_1rdXx4w</string>
+
+    <string name="selected_address" translatable="false">Selected address</string>
+    <string name="choose_country" translatable="false">Country</string>
+    <string name="select_location_on_map" translatable="false">Select location on map</string>
+    <string name="supported_areas" translatable="false">User can only select locations which contains these literals.. \nSeparate each with comma</string>
+    <string name="supported_areas_hint" translatable="false">ex : cairo,القاهرة</string>
+    <string name="latitude" translatable="false">Latitude</string>
+    <string name="longitude" translatable="false">Longitude</string>
+    <string name="language" translatable="false">Language</string>
+
+    <string-array name="country_list">
+        <item>Egypt</item>
+        <item>Saudi arabia</item>
+        <item>Oman</item>
+        <item>Morocco</item>
+        <item>United States</item>
+        <item>India</item>
+    </string-array>
+
+    <string-array name="language_list">
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
+</resources>

@@ -8,4 +8,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Skip"
+include ':simpleplacepicker'
 include ':app'
