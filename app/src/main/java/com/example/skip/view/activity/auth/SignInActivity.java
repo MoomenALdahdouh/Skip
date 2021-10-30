@@ -131,6 +131,7 @@ public class SignInActivity extends AppCompatActivity {
 
     public void registerButtonOnClick(View view) {
         startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+        finish();
     }
 
     public void forgotPasswordOnClick(View view) {

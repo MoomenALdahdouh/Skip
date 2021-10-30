@@ -16,12 +16,14 @@ import com.example.skip.R;
 import com.example.skip.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -110,11 +112,21 @@ public class RegisterActivity extends AppCompatActivity {
     private void addNewUserOnDbFirebase() {
         firebaseUser = firebaseAuth.getCurrentUser();
         User user = new User(userName, userEmail, "", "", "", "", userType, dateOfCreate, "https://i.ibb.co/W0hVGcJ/accont.png", "1", "");
-        // save on cloudFireStore
-        DocumentReference documentReference = firebaseFirestore.collection("Users")
-                .document(firebaseUser.getUid());
-        documentReference.set(user);
-        verifyEmail();
+        //check If The User Register Before
+        firebaseFirestore.collection("User").whereEqualTo("email", userEmail).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    if (task.getResult().isEmpty()){
+                        // add on cloudFireStore
+                        DocumentReference documentReference = firebaseFirestore.collection("Users")
+                                .document(firebaseUser.getUid());
+                        documentReference.set(user);
+                        verifyEmail();
+                    }
+                }
+            }
+        });
     }
 
     private void verifyEmail() {

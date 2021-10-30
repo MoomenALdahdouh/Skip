@@ -39,7 +39,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editTextText_user_name"
                     app:srcCompat="@drawable/ic_baseline_account_circle_24"
-                    app:tint="@color/purple_700" />
+                    app:tint="@color/purple_500" />
 
                 <EditText
                     android:id="@+id/editTextText_user_name"
@@ -83,7 +83,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editText_user_email"
                     app:srcCompat="@drawable/ic_baseline_email_24"
-                    app:tint="@color/purple_700" />
+                    app:tint="@color/purple_500" />
 
                 <EditText
                     android:id="@+id/editText_user_email"
@@ -144,19 +144,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editText_user_password"
                     app:srcCompat="@drawable/ic_baseline_lock_24"
-                    app:tint="@color/purple_700" />
+                    app:tint="@color/purple_500" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/button_register"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:background="@drawable/bg_button_7"
+                android:onClick="registerButtonOnClick"
                 android:text="@string/register"
                 android:textColor="@color/white"
-                android:onClick="registerButtonOnClick"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox_type" />
@@ -166,10 +166,12 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_register" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
             <ImageView
@@ -183,8 +185,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logo"
-                app:tint="@color/purple_700" />
+                app:srcCompat="@drawable/splash_2" />
 
 
             <LinearLayout
@@ -195,6 +196,7 @@
                 android:layout_marginBottom="32dp"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -233,11 +235,11 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_register">
 
                 <TextView
                     android:id="@+id/textView5"
@@ -252,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:onClick="signInButtonOnClick"
                     android:text="@string/sign_in"
-                    android:textColor="@color/purple_700"
+                    android:textColor="@color/purple_500"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -264,7 +266,7 @@
                 android:layout_marginTop="8dp"
                 android:onClick="checkBoxTypeOnClick"
                 android:text="@string/register_as_company"
-                android:textColor="@color/purple_700"
+                android:textColor="@color/purple_500"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 

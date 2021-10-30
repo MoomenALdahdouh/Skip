@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -17,6 +18,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,10 +76,39 @@ public class CategoryImageFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.editTextImageUrl.addTextChangedListener(textWatcher);
+        binding.buttonNext.setEnabled(checkInputDetails());
         initialState();
         selectImage();
         nextButton();
     }
+
+    private String imageUrl = "";
+
+    private boolean checkInputDetails() {
+        imageUrl = binding.editTextImageUrl.getText().toString().trim();
+        if (!imageUrl.isEmpty()) {
+            saveCategoryImage(imageUrl);
+        }
+        return !imageUrl.isEmpty();
+    }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            binding.buttonNext.setEnabled(checkInputDetails());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
     private void initialState() {
         binding.progressBar.setVisibility(View.GONE);
@@ -184,6 +216,7 @@ public class CategoryImageFragment extends Fragment {
             CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
                     //.setMinCropResultSize(512,512)
+                    .setBackgroundColor(Color.parseColor("#00000000"))
                     .setAspectRatio(4, 4)
                     .start(getContext(), CategoryImageFragment.this);
         }

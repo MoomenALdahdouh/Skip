@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +84,33 @@ public class CategoryBackgroundFragment extends Fragment {
         nextButton();
     }
 
+    private String imageUrl = "";
+
+    private boolean checkInputDetails() {
+        imageUrl = binding.editTextImageUrl.getText().toString().trim();
+        if (!imageUrl.isEmpty()) {
+            saveCategoryBackground(imageUrl);
+        }
+        return !imageUrl.isEmpty();
+    }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            binding.buttonNext.setEnabled(checkInputDetails());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
     private void initialState() {
         binding.progressBar.setVisibility(View.GONE);
         binding.imageViewDone.setVisibility(View.GONE);
@@ -90,6 +120,12 @@ public class CategoryBackgroundFragment extends Fragment {
 
     private void selectImage() {
         binding.imageViewSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cropImage();
+            }
+        });
+        binding.buttonEditImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cropImage();

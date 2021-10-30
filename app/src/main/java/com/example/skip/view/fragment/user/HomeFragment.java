@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -38,15 +39,23 @@ import com.example.skip.adapter.CategoriesAdapter;
 import com.example.skip.databinding.FragmentHomeBinding;
 import com.example.skip.model.Category;
 import com.example.skip.view.activity.admin.AdminActivity;
+import com.example.skip.view.activity.auth.SignInActivity;
 import com.example.skip.viewmodel.CategoryViewModel;
 import com.example.skip.viewmodel.HomeViewModel;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
@@ -55,6 +64,8 @@ public class HomeFragment extends Fragment {
     ActivityResultLauncher<Intent> activityResultLauncher;
 
     private TextView mLocationText, mLatitudeTv, mLongitudeTv;
+    private GoogleMap map;
+    private MapView mapView;
     private EditText mSupportedAreaEt;
 
     private String[] countryListIso = {"eg", "sau", "om", "mar", "usa", "ind"};
@@ -74,6 +85,20 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fillCategoriesRecycle();
+        selectLocation();
+    }
+
+    private void registerAsProvider() {
+        binding.buttonRegisterAsProvider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), SignInActivity.class));
+            }
+        });
+    }
+
+    private void fillCategoriesRecycle() {
         final RecyclerView recyclerView = binding.recycleViewCategories;
         final CategoriesAdapter categoriesAdapter = new CategoriesAdapter(getContext());
         final GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
@@ -97,27 +122,6 @@ public class HomeFragment extends Fragment {
                 recyclerView.setHasFixedSize(true);
             }
         });
-        selectLocation();
-
-        /*activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                if (result.getResultCode() == PLACE_PICKER_REQUEST) {
-                    if (result.getResultCode() == getActivity().RESULT_OK && result.getData() != null) {
-                        Place place = PlacePicker.getPlace(result.getData(), getContext());
-                        StringBuilder stringBuilder = new StringBuilder();
-                        String latitude = String.valueOf(place.getLatLng().latitude);
-                        String longitude = String.valueOf(place.getLatLng().longitude);
-                        stringBuilder.append("LATITUDE :");
-                        stringBuilder.append(latitude);
-                        stringBuilder.append("\n");
-                        stringBuilder.append("LONGITUDE");
-                        stringBuilder.append(longitude);
-                        binding.textView4.setText(stringBuilder.toString());
-                    }
-                }
-            }
-        });*/
     }
 
     private void selectLocation() {
@@ -175,29 +179,35 @@ public class HomeFragment extends Fragment {
         mLatitudeTv = dialogView.findViewById(R.id.tv_latitude);
         mLongitudeTv = dialogView.findViewById(R.id.tv_longitude);
         updateUiData(data);
-       /* dialogBuilder.setTitle("Create Category")
-                .setMessage("Successfully Create Category")
-                .setIcon(R.drawable.ic_baseline_done_24)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });*/
+        Button buttonOK = dialogView.findViewById(R.id.buttonOk);
         AlertDialog alertDialog = dialogBuilder.create();
+        buttonOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
         alertDialog.show();
     }
 
-    private void updateUiData(Intent data){
-        mLocationText.setText(data.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS));
-        mLatitudeTv.setText(String.valueOf(data.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA,-1)));
-        mLongitudeTv.setText(String.valueOf(data.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA,-1)));
+    private String locationText;
+    private double latitudeTv;
+    private double longitudeTv;
+
+    private void updateUiData(Intent data) {
+        locationText = data.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS);
+        latitudeTv = data.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1);
+        longitudeTv = data.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1);
+        mLocationText.setText(locationText);
+        mLatitudeTv.setText(String.valueOf(latitudeTv));
+        mLongitudeTv.setText(String.valueOf(longitudeTv));
         //mLlResult.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE && resultCode == getActivity().RESULT_OK){
+        if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE && resultCode == getActivity().RESULT_OK) {
             if (data != null)
                 createCategorySuccessfully(data);
         }
@@ -207,5 +217,13 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        /*map = googleMap;
+        LatLng home = new LatLng(latitudeTv, longitudeTv);
+        map.addMarker(new MarkerOptions().position(home).title("Here lives " + locationText));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(home, 16));*/
     }
 }

@@ -36,8 +36,18 @@ public class PhoneAuthActivity extends AppCompatActivity {
 
         fragment = new InputPhoneFragment();
         setFragment(fragment);
+        signInByEmail();
         //nextButtonOnClick();
         //sendOTP();
+    }
+
+    private void signInByEmail() {
+        binding.buttonSignInByEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PhoneAuthActivity.this, SignInActivity.class));
+            }
+        });
     }
 
     private void setFragment(Fragment fragment) {
