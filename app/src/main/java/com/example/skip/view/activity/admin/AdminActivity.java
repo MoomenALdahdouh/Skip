@@ -23,6 +23,8 @@ import com.example.skip.R;
 import com.example.skip.adapter.FragmentPageAdapter;
 import com.example.skip.databinding.ActivityAdminBinding;
 import com.example.skip.databinding.ActivityMainBinding;
+import com.example.skip.utils.PreferenceUtils;
+import com.example.skip.view.activity.auth.PhoneAuthActivity;
 import com.example.skip.view.fragment.admin.AdsFragment;
 import com.example.skip.view.fragment.admin.CategoriesFragment;
 import com.example.skip.view.fragment.admin.EmployiesFragment;
@@ -82,6 +84,13 @@ public class AdminActivity extends AppCompatActivity {
                 break;
             case R.id.action_ads:
                 intent = new Intent(AdminActivity.this, CreateAdsActivity.class);
+                break;
+            case R.id.action_sign_out:
+                PreferenceUtils.saveUserType("", AdminActivity.this);
+                PreferenceUtils.saveEmail("", AdminActivity.this);
+                PreferenceUtils.savePhone("", AdminActivity.this);
+                intent = new Intent(AdminActivity.this, PhoneAuthActivity.class);
+                finish();
                 break;
         }
         startActivity(intent);

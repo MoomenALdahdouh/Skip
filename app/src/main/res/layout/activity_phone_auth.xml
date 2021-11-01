@@ -45,10 +45,8 @@
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_skip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewJoin">
@@ -74,11 +72,14 @@
         style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
         android:onClick="skipOnClick"
         android:text="Skip"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignInByEmail" />
 
     <Button
         android:id="@+id/buttonSignInByEmail"
@@ -86,7 +87,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In By Email"
+        android:textStyle="bold"
+        android:textAllCaps="false"
         android:textColor="@color/purple_500"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

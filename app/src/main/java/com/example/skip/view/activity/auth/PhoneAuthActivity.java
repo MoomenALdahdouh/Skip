@@ -46,6 +46,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(PhoneAuthActivity.this, SignInActivity.class));
+                finish();
             }
         });
     }

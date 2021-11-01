@@ -8,10 +8,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.skip.R;
 import com.example.skip.utils.PreferenceUtils;
+import com.example.skip.view.activity.auth.PhoneAuthActivity;
 import com.example.skip.view.activity.auth.SignInActivity;
 import com.example.skip.view.activity.admin.AdminActivity;
 import com.example.skip.view.activity.copmany.CompanyActivity;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragment;
     private FragmentTransaction fragmentTransaction;
     private DrawerLayout drawer;
+    private View navHeaderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+        navHeaderView = navigationView.getHeaderView(0);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_wallet, R.id.nav_account_settings)
@@ -86,7 +91,18 @@ public class MainActivity extends AppCompatActivity {
         } else
             showSnackBar();
 
-        //bottomNavigation();
+        layoutAuthNavHeader = navHeaderView.findViewById(R.id.linearLayoutAuth);
+        textViewAuth = navHeaderView.findViewById(R.id.textViewAuthText);
+        navHeaderAuthOnClick();
+        authStatuseInNavHeader();
+    }
+
+    private void authStatuseInNavHeader() {
+        if (!isLogin()) {
+            textViewAuth.setText("Sign in");
+        } else {
+            textViewAuth.setText("Sign out");
+        }
     }
 
     @Override
@@ -126,6 +142,32 @@ public class MainActivity extends AppCompatActivity {
     private void setFragment(Fragment fragment) {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.nav_host_fragment_content_main, fragment).commit();
+    }
+
+    private LinearLayout layoutAuthNavHeader;
+    private TextView textViewAuth;
+
+    private void navHeaderAuthOnClick() {
+        layoutAuthNavHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isLogin()) {
+                    startActivity(new Intent(getApplicationContext(), PhoneAuthActivity.class));
+                } else {
+                    signOut();
+                }
+            }
+        });
+    }
+
+    private void signOut() {
+        FirebaseAuth.getInstance().signOut();
+        PreferenceUtils.saveEmail("", MainActivity.this);
+        PreferenceUtils.savePassword("", MainActivity.this);
+        PreferenceUtils.saveUserType("", MainActivity.this);
+        PreferenceUtils.savePhone("", MainActivity.this);
+        startActivity(new Intent(MainActivity.this, MainActivity.class));
+        finish();
     }
 
     @Override
@@ -177,8 +219,7 @@ public class MainActivity extends AppCompatActivity {
         snackbar.setAction("Sign in", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), PhoneAuthActivity.class));
                 snackbar.dismiss();
             }
         }).setActionTextColor(getResources().getColor(R.color.purple_500)).show();

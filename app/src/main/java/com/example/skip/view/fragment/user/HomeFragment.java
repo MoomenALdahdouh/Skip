@@ -87,6 +87,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
         fillCategoriesRecycle();
         selectLocation();
+        registerAsProvider();
     }
 
     private void registerAsProvider() {

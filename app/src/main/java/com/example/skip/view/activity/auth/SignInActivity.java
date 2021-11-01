@@ -85,11 +85,13 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBarReset.setVisibility(View.VISIBLE);
+                buttonReset.setVisibility(View.GONE);
                 resetEmail = editTextEmail.getText().toString().trim();
                 if (resetEmail.isEmpty()) {
                     editTextEmail.setError("The Email is required to reset password!");
                     editTextEmail.requestFocus();
                     progressBarReset.setVisibility(View.GONE);
+                    buttonReset.setVisibility(View.VISIBLE);
                 } else {
                     resetPassword(resetEmail);
                 }
@@ -262,4 +264,14 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
+    public void signByEmailOnClick(View view) {
+        startActivity(new Intent(SignInActivity.this,PhoneAuthActivity.class));
+        finish();
+    }
+
+
+    public void skipOnClick(View view) {
+        startActivity(new Intent(SignInActivity.this,MainActivity.class));
+        finish();
+    }
 }

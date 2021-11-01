@@ -12,6 +12,7 @@
     <string name="action_provider">Create new Provider</string>
     <string name="action_admin">Create new Admin</string>
     <string name="action_ads">Create new Ads</string>
+    <string name="sign_out">Sign out</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_orders">Orders</string>

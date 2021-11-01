@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (checkBoxType.isChecked()) {
             userType = "1";
         } else {
-            userType = "2";
+            userType = "0";
         }
     }
 
@@ -133,7 +133,10 @@ public class RegisterActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         assert firebaseUser != null;
         firebaseUser.sendEmailVerification();
-        Toast.makeText(getApplicationContext(), "Registered Successfully!\nCheck your email to verify your account!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Check your email to verify your account!", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(RegisterActivity.this,SignInActivity.class));
+        finish();
+//        Toast.makeText(getApplicationContext(), "Registered Successfully!\nCheck your email to verify your account!", Toast.LENGTH_LONG).show();
     }
 
     private boolean isValid = true;
