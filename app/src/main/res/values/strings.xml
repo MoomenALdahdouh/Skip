@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="action_category">Create new Category</string>
+    <string name="action_sub_category">Create new Subcategory</string>
     <string name="action_service">Create new Service</string>
     <string name="action_provider">Create new Provider</string>
     <string name="action_admin">Create new Admin</string>

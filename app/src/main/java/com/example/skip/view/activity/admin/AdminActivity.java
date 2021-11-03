@@ -25,16 +25,19 @@ import com.example.skip.databinding.ActivityAdminBinding;
 import com.example.skip.databinding.ActivityMainBinding;
 import com.example.skip.utils.PreferenceUtils;
 import com.example.skip.view.activity.auth.PhoneAuthActivity;
+import com.example.skip.view.activity.user.MainActivity;
 import com.example.skip.view.fragment.admin.AdsFragment;
 import com.example.skip.view.fragment.admin.CategoriesFragment;
 import com.example.skip.view.fragment.admin.EmployiesFragment;
 import com.example.skip.view.fragment.admin.HomeAdminFragment;
 import com.example.skip.view.fragment.admin.ServiceFragment;
 import com.example.skip.view.fragment.admin.UsersFragment;
+import com.example.skip.view.fragment.admin.category.CreateSubcategoryActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -73,6 +76,9 @@ public class AdminActivity extends AppCompatActivity {
             case R.id.action_category:
                 intent = new Intent(AdminActivity.this, CreateCategoryActivity.class);
                 break;
+            case R.id.action_sub_category:
+                intent = new Intent(AdminActivity.this, CreateSubcategoryActivity.class);
+                break;
             case R.id.action_service:
                 intent = new Intent(AdminActivity.this, CreateServiceActivity.class);
                 break;
@@ -86,15 +92,22 @@ public class AdminActivity extends AppCompatActivity {
                 intent = new Intent(AdminActivity.this, CreateAdsActivity.class);
                 break;
             case R.id.action_sign_out:
-                PreferenceUtils.saveUserType("", AdminActivity.this);
-                PreferenceUtils.saveEmail("", AdminActivity.this);
-                PreferenceUtils.savePhone("", AdminActivity.this);
+                signOut();
                 intent = new Intent(AdminActivity.this, PhoneAuthActivity.class);
                 finish();
                 break;
         }
-        startActivity(intent);
+        if (intent != null)
+            startActivity(intent);
         return super.onOptionsItemSelected(item);
+    }
+
+    private void signOut() {
+        FirebaseAuth.getInstance().signOut();
+        PreferenceUtils.saveEmail("", AdminActivity.this);
+        PreferenceUtils.savePassword("", AdminActivity.this);
+        PreferenceUtils.saveUserType("", AdminActivity.this);
+        PreferenceUtils.savePhone("", AdminActivity.this);
     }
 
     public void createCategorySuccessfully() {

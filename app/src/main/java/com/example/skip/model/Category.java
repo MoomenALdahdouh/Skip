@@ -13,7 +13,7 @@ public class Category {
     @SerializedName("background")
     String background;
     @SerializedName("parentCategoryId")
-    String categoryId;
+    String parentCategoryId;
     @SerializedName("status")
     String status;
     @SerializedName("createAt")
@@ -28,13 +28,13 @@ public class Category {
     public Category() {
     }
 
-    public Category(String title, String subTitle, String image, String background, String categoryId
+    public Category(String title, String subTitle, String image, String background, String parentCategoryId
             , String status, String createAt, String createBy, String lastUpdate, String updateBy) {
         this.title = title;
         this.subTitle = subTitle;
         this.image = image;
         this.background = background;
-        this.categoryId = categoryId;
+        this.parentCategoryId = parentCategoryId;
         this.status = status;
         this.createAt = createAt;
         this.createBy = createBy;
@@ -81,12 +81,12 @@ public class Category {
         this.background = background;
     }
 
-    public String getCategoryId() {
-        return categoryId;
+    public String getParentCategoryId() {
+        return parentCategoryId;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setParentCategoryId(String parentCategoryId) {
+        this.parentCategoryId = parentCategoryId;
     }
 
     public String getStatus() {

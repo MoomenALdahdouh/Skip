@@ -1,29 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_category"
-        android:title="@string/action_category"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-    <item android:id="@+id/action_service"
-        android:title="@string/action_service"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-    <item android:id="@+id/action_provider"
-        android:title="@string/action_provider"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-    <item android:id="@+id/action_admin"
-        android:title="@string/action_admin"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-    <item android:id="@+id/action_ads"
-        android:title="@string/action_ads"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.activity.admin.AdminActivity">
+    <item
+        android:icon="@drawable/ic_outline_settings_applications_24"
+        android:title="Console Admin"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_category"
+                android:orderInCategory="100"
+                android:title="@string/action_category"
+                android:icon="@drawable/ic_baseline_control_point_duplicate_24"/>
 
-    <item android:id="@+id/action_sign_out"
-        android:title="@string/sign_out"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
+            <item
+                android:id="@+id/action_sub_category"
+                android:icon="@drawable/ic_outline_add_to_photos_24"
+                android:orderInCategory="100"
+                android:title="@string/action_sub_category"
+                />
+            <item
+                android:id="@+id/action_service"
+                android:orderInCategory="100"
+                android:title="@string/action_service"
+                android:icon="@drawable/ic_outline_cleaning_services_24"/>
+            <item
+                android:id="@+id/action_provider"
+                android:orderInCategory="100"
+                android:title="@string/action_provider"
+                android:icon="@drawable/ic_baseline_self_improvement_24"/>
+            <item
+                android:id="@+id/action_admin"
+                android:orderInCategory="100"
+                android:title="@string/action_admin"
+                android:icon="@drawable/ic_outline_admin_panel_settings_24"/>
+            <item
+                android:id="@+id/action_ads"
+                android:orderInCategory="100"
+                android:title="@string/action_ads"
+                android:icon="@drawable/ic_outline_amp_stories_24"/>
+
+            <item
+                android:id="@+id/action_sign_out"
+                android:orderInCategory="100"
+                android:title="@string/sign_out"
+                android:icon="@drawable/ic_outline_exit_to_app_24"/>
+        </menu>
+    </item>
 </menu>
+
+<!--
+    <?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:icon="@drawable/ic_outline_settings_applications_24"
+app:showAsAction="always"
+tools:context=".view.activity.admin.AdminActivity">
+
+<item
+    android:id="@+id/action_category"
+    android:orderInCategory="100"
+    android:title="@string/action_category" />
+
+<item
+    android:id="@+id/action_sub_category"
+    android:icon="@drawable/ic_home_black_24dp"
+    android:orderInCategory="100"
+    android:title="@string/action_sub_category" />
+<item
+    android:id="@+id/action_service"
+    android:orderInCategory="100"
+    android:title="@string/action_service" />
+<item
+    android:id="@+id/action_provider"
+    android:orderInCategory="100"
+    android:title="@string/action_provider" />
+<item
+    android:id="@+id/action_admin"
+    android:orderInCategory="100"
+    android:title="@string/action_admin" />
+<item
+    android:id="@+id/action_ads"
+    android:orderInCategory="100"
+    android:title="@string/action_ads" />
+
+<item
+    android:id="@+id/action_sign_out"
+    android:orderInCategory="100"
+    android:title="@string/sign_out" />
+
+</menu>-->

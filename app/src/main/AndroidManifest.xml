@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,12 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skip">
-
-        <!--Location-->
+        <activity
+            android:name=".view.fragment.admin.category.CreateSubcategoryActivity"
+            android:exported="true" />
+        <!-- Location -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/places_api_key" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -37,8 +37,7 @@
             android:exported="true" />
         <activity
             android:name=".view.activity.admin.CreateAdminActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".view.activity.admin.CreateProviderActivity"
             android:exported="true" />
@@ -60,11 +59,14 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Skip">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".view.activity.copmany.CompanyActivity"
@@ -76,11 +78,14 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Skip.NoActionBar">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".view.activity.ActivityIntro"
