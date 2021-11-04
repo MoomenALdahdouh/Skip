@@ -75,7 +75,7 @@ public class CategoryDetailsFragment extends Fragment {
     private void saveCategoryDetail() {
         String createBy = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String dateOfCreate = DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-        myCategory = new Category(title, describtion, "", "", "", "1", dateOfCreate, createBy, "", "");
+        myCategory = new Category(title, describtion, "", "", "", "1", dateOfCreate, createBy, "", "","1");
         CategoryViewModel.setCategory(myCategory);
         ((CreateCategoryActivity) getActivity()).setCategoryTitle(title, describtion);
         binding.buttonNext.setEnabled(false);

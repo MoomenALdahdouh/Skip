@@ -78,6 +78,7 @@ public class CreateSubcategoryActivity extends AppCompatActivity {
         binding = ActivityCreateSubcategoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.progressBar.setVisibility(View.GONE);
+        binding.imageEditLogo.setVisibility(View.GONE);
         binding.editTextLogoUrl.addTextChangedListener(textWatcher);
         binding.editTextCategoryTitle.addTextChangedListener(textWatcher);
         binding.editTextCategoryDescription.addTextChangedListener(textWatcher);
@@ -136,7 +137,7 @@ public class CreateSubcategoryActivity extends AppCompatActivity {
         binding.progressBar.setVisibility(View.VISIBLE);
         String createBy = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String dateOfCreate = DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-        myCategory = new Category(title, description, logo, "", categoryName, "1", dateOfCreate, createBy, "", "");
+        myCategory = new Category(title, description, logo, "", categoryName, "1", dateOfCreate, createBy, "", "", "0");
         CategoryViewModel categoryViewModel = new CategoryViewModel();
         categoryViewModel.addCategoryToFirebase(myCategory);
         showSuccessfullyDialog();
@@ -217,6 +218,8 @@ public class CreateSubcategoryActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 downloadUri = task.getResult().toString();
+                                binding.editTextLogoUrl.setText(downloadUri);
+                                binding.imageEditLogo.setVisibility(View.VISIBLE);
                                 viewLogoInCard(downloadUri);
                             }
                         }

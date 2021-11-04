@@ -28,12 +28,14 @@ public class CategoryRepository {
     FirebaseAuth firebaseAuth;
     MutableLiveData<Category> categoryMutableLiveData;
     private MutableLiveData<ArrayList<Category>> categoryListMutableLiveData;
+    private MutableLiveData<ArrayList<Category>> subcategoryListMutableLiveData;
 
     public CategoryRepository() {
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         categoryMutableLiveData = new MutableLiveData<>();
         categoryListMutableLiveData = new MutableLiveData<>();
+        subcategoryListMutableLiveData = new MutableLiveData<>();
     }
 
     public MutableLiveData<Category> addCategory(Category category) {
@@ -46,24 +48,46 @@ public class CategoryRepository {
         return categoryMutableLiveData;
     }
 
-
-    public MutableLiveData<ArrayList<Category>> getCategoryListMutableLiveData() {
-        return categoryListMutableLiveData;
-    }
-
     public MutableLiveData<ArrayList<Category>> getCategoriesFromFirebase() {
+        /*firebaseFirestore.collection("Categories").whereEqualTo("type", "1").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    ArrayList<Category> categoryArrayList = new ArrayList<>();
+                    categoryArrayList.addAll(task.getResult().toObjects(Category.class));
+                    categoryListMutableLiveData.setValue(categoryArrayList);
+                }
+            }
+        });*/
         firebaseFirestore.collection("Categories").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 ArrayList<Category> categoryArrayList = new ArrayList<>();
                 for (QueryDocumentSnapshot doc : value) {
                     Category category = doc.toObject(Category.class);
-                    categoryArrayList.add(category);
+                    if (category.getType().equals("1"))
+                        categoryArrayList.add(category);
                 }
                 categoryListMutableLiveData.setValue(categoryArrayList);
             }
         });
         return categoryListMutableLiveData;
+    }
+
+    public MutableLiveData<ArrayList<Category>> getSubCategoriesFromFirebase() {
+        firebaseFirestore.collection("Categories").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                ArrayList<Category> categoryArrayList = new ArrayList<>();
+                for (QueryDocumentSnapshot doc : value) {
+                    Category category = doc.toObject(Category.class);
+                    if (category.getType().equals("0"))
+                        categoryArrayList.add(category);
+                }
+                subcategoryListMutableLiveData.setValue(categoryArrayList);
+            }
+        });
+        return subcategoryListMutableLiveData;
     }
 
 }

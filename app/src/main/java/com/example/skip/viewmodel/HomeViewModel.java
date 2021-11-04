@@ -15,7 +15,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         listMutableLiveData = new MutableLiveData<>();
-        ArrayList<Category> categoryArrayList = new ArrayList<Category>();
+        /*ArrayList<Category> categoryArrayList = new ArrayList<Category>();
         Category category = new Category("Clean Cars", "30 USD", "","");
         categoryArrayList.add(category);
         categoryArrayList.add(category);
@@ -24,7 +24,7 @@ public class HomeViewModel extends ViewModel {
         categoryArrayList.add(category);
         categoryArrayList.add(category);
         categoryArrayList.add(category);
-        listMutableLiveData.setValue(categoryArrayList);
+        listMutableLiveData.setValue(categoryArrayList);*/
     }
 
     public LiveData<ArrayList<Category>> getCategories() {

@@ -24,12 +24,14 @@ public class Category {
     String lastUpdate;
     @SerializedName("updateBy")
     String updateBy;
+    @SerializedName("type")
+    String type;
 
     public Category() {
     }
 
     public Category(String title, String subTitle, String image, String background, String parentCategoryId
-            , String status, String createAt, String createBy, String lastUpdate, String updateBy) {
+            , String status, String createAt, String createBy, String lastUpdate, String updateBy, String type) {
         this.title = title;
         this.subTitle = subTitle;
         this.image = image;
@@ -40,14 +42,15 @@ public class Category {
         this.createBy = createBy;
         this.lastUpdate = lastUpdate;
         this.updateBy = updateBy;
+        this.type = type;
     }
 
-    public Category(String title, String subTitle, String image, String background) {
+    /*public Category(String title, String subTitle, String image, String background) {
         this.title = title;
         this.subTitle = subTitle;
         this.image = image;
         this.background = background;
-    }
+    }*/
 
     public String getTitle() {
         return title;
@@ -127,5 +130,13 @@ public class Category {
 
     public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

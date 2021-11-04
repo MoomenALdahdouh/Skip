@@ -54,7 +54,7 @@
             android:id="@+id/editTextImageUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_baseline_title_24"
+            android:drawableEnd="@drawable/ic_baseline_add_link_24"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 

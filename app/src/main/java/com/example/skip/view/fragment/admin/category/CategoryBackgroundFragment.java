@@ -222,6 +222,7 @@ public class CategoryBackgroundFragment extends Fragment {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 downloadUri = task.getResult().toString();
+                                binding.editTextImageUrl.setText(downloadUri);
                                 saveCategoryBackground(downloadUri);
                             }
                         }

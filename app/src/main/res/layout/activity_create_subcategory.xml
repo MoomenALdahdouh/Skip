@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+    android:padding="16dp"
     tools:context=".view.fragment.admin.category.CreateSubcategoryActivity">
 
     <include
@@ -61,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top|start"
+            android:drawableEnd="@drawable/ic_baseline_title_24"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +80,7 @@
             android:id="@+id/editTextLogoUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_baseline_title_24"
+            android:drawableEnd="@drawable/ic_baseline_add_link_24"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,5 +160,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutsa" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:background="@color/white"
+        android:padding="2dp"
+        android:text="Select Category"
+        android:textColor="@color/teal_700"
+        android:textSize="@dimen/_8sdp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintStart_toStartOf="@+id/spinner"
+        app:layout_constraintTop_toTopOf="@+id/spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
