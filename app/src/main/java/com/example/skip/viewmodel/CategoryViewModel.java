@@ -15,6 +15,7 @@ public class CategoryViewModel extends ViewModel {
     private CategoryRepository categoryRepository;
     private MutableLiveData<Category> categoryMutableLiveData;
     private MutableLiveData<ArrayList<Category>> categoryListMutableLiveData;
+    private MutableLiveData<ArrayList<Category>> subcategoryListMutableLiveData;
     private static Category category = new Category();
 
 
@@ -22,6 +23,7 @@ public class CategoryViewModel extends ViewModel {
         categoryMutableLiveData = new MutableLiveData<>();
         categoryRepository = new CategoryRepository();
         categoryListMutableLiveData = categoryRepository.getCategoriesFromFirebase();
+        subcategoryListMutableLiveData = categoryRepository.getSubCategoriesFromFirebase();
     }
 
     public static Category getCategory() {
@@ -39,5 +41,9 @@ public class CategoryViewModel extends ViewModel {
 
     public MutableLiveData<ArrayList<Category>> getCategoryListMutableLiveData() {
         return categoryListMutableLiveData;
+    }
+
+    public MutableLiveData<ArrayList<Category>> getSubcategoryListMutableLiveData() {
+        return subcategoryListMutableLiveData;
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.admin.AdminActivity">
 
-    <androidx.cardview.widget.CardView
+    <!--<androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="?actionBarSize"
@@ -19,10 +19,18 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/Theme.Skip.PopupOverlay"
-            app:subtitle="Moomen Aldahdouh"
-            app:title="Console"/>
+            app:navigationIcon="@drawable/ic_baseline_account_circle_24" />
 
-    </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_account_circle_24"
+        app:popupTheme="@style/Theme.Skip.PopupOverlay" />
 
 
     <!--<androidx.cardview.widget.CardView
@@ -69,7 +77,7 @@
         android:scrollIndicators="right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:tabIndicatorColor="@color/teal_700"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/teal_700"

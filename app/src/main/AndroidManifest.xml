@@ -18,9 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skip">
         <activity
-            android:name=".view.fragment.admin.category.CreateSubcategoryActivity"
+            android:name=".view.activity.AccountActivity"
             android:exported="true" />
-        <!-- Location -->
+        <activity
+            android:name=".view.fragment.admin.category.CreateSubcategoryActivity"
+            android:exported="true" /> <!-- Location -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/places_api_key" />
@@ -37,7 +39,7 @@
             android:exported="true" />
         <activity
             android:name=".view.activity.admin.CreateAdminActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".view.activity.admin.CreateProviderActivity"
             android:exported="true" />

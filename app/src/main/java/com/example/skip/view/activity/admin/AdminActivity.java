@@ -11,6 +11,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -24,6 +25,7 @@ import com.example.skip.adapter.FragmentPageAdapter;
 import com.example.skip.databinding.ActivityAdminBinding;
 import com.example.skip.databinding.ActivityMainBinding;
 import com.example.skip.utils.PreferenceUtils;
+import com.example.skip.view.activity.AccountActivity;
 import com.example.skip.view.activity.auth.PhoneAuthActivity;
 import com.example.skip.view.activity.user.MainActivity;
 import com.example.skip.view.fragment.admin.AdsFragment;
@@ -31,6 +33,7 @@ import com.example.skip.view.fragment.admin.CategoriesFragment;
 import com.example.skip.view.fragment.admin.EmployiesFragment;
 import com.example.skip.view.fragment.admin.HomeAdminFragment;
 import com.example.skip.view.fragment.admin.ServiceFragment;
+import com.example.skip.view.fragment.admin.SubcategoriesFragment;
 import com.example.skip.view.fragment.admin.UsersFragment;
 import com.example.skip.view.fragment.admin.category.CreateSubcategoryActivity;
 import com.google.android.material.navigation.NavigationView;
@@ -46,14 +49,22 @@ public class AdminActivity extends AppCompatActivity {
     private FragmentPageAdapter fragmentPageAdapter;
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
-    private String[] titles = new String[]{"Home", "Categories", "Services", "Employees", "Users", "Ads"};
-    private Fragment[] fragments = new Fragment[]{new HomeAdminFragment(), new CategoriesFragment(), new ServiceFragment(), new EmployiesFragment(), new UsersFragment(), new AdsFragment()};
+    private String[] titles = new String[]{"Home", "Categories", "Subcategories", "Services", "Employees", "Users", "Ads"};
+    private Fragment[] fragments = new Fragment[]{new HomeAdminFragment(), new CategoriesFragment(),new SubcategoriesFragment(), new ServiceFragment(), new EmployiesFragment(), new UsersFragment(), new AdsFragment()};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        /*toolbar.setTitle("Title");
+        toolbar.setSubtitle("Sub");*/
+        getSupportActionBar().setTitle("");
+        //getSupportActionBar().setSubtitle("sairam");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_account_circle_24);
         setSupportActionBar(findViewById(R.id.toolbar));
         viewPager = findViewById(R.id.view_pager_id);
         tabLayout = findViewById(R.id.tabLayout);
@@ -73,6 +84,9 @@ public class AdminActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent = null;
         switch (item.getItemId()) {
+            case android.R.id.home:
+                intent = new Intent(AdminActivity.this, AccountActivity.class);
+                break;
             case R.id.action_category:
                 intent = new Intent(AdminActivity.this, CreateCategoryActivity.class);
                 break;
