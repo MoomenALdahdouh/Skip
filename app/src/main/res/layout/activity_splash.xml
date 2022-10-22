@@ -11,15 +11,16 @@
         android:id="@+id/imageViewSplash"
         android:layout_width="0dp"
         android:layout_height="@dimen/_260sdp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
+        android:background="@drawable/bg_button_14"
         android:transitionName="logo_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/splash" />
+        app:srcCompat="@drawable/logo" />
 
     <Space
         android:layout_width="0dp"
