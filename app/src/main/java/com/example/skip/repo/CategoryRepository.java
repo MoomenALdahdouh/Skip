@@ -63,10 +63,12 @@ public class CategoryRepository {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 ArrayList<Category> categoryArrayList = new ArrayList<>();
-                for (QueryDocumentSnapshot doc : value) {
-                    Category category = doc.toObject(Category.class);
-                    if (category.getType().equals("1"))
-                        categoryArrayList.add(category);
+                if (value != null){
+                    for (QueryDocumentSnapshot doc : value) {
+                        Category category = doc.toObject(Category.class);
+                        if (category.getType().equals("1"))
+                            categoryArrayList.add(category);
+                    }
                 }
                 categoryListMutableLiveData.setValue(categoryArrayList);
             }
@@ -79,10 +81,12 @@ public class CategoryRepository {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 ArrayList<Category> categoryArrayList = new ArrayList<>();
-                for (QueryDocumentSnapshot doc : value) {
-                    Category category = doc.toObject(Category.class);
-                    if (category.getType().equals("0"))
-                        categoryArrayList.add(category);
+                if (value != null){
+                    for (QueryDocumentSnapshot doc : value) {
+                        Category category = doc.toObject(Category.class);
+                        if (category.getType().equals("0"))
+                            categoryArrayList.add(category);
+                    }
                 }
                 subcategoryListMutableLiveData.setValue(categoryArrayList);
             }
